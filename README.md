@@ -44,7 +44,7 @@ https://github.com/TypeStrong/ts-loader#getcustomtransformers-----before-transfo
 
 The default export of this module is a function which expects a `ts.Program` an returns a transformer function. Your config should look something like this:
 
-```
+```js
 const glitzDisplayName = require('@avensia-oss/ts-transform-glitz-displayname');
 
 return {
