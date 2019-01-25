@@ -1,0 +1,43 @@
+{
+  "name": "@avensia-oss/ts-transform-glitz-displayname",
+  "version": "0.0.1",
+  "description": "A TypeScript custom transformer that adds a displayName to all Glitz components with a VariableStatement.",
+  "main": "index.js",
+  "keywords": [
+    "TypeScript",
+    "transform",
+    "transformer",
+    "react",
+    "glitz",
+    "displayname"
+  ],
+  "author": "Erik Hellman <erik.hellman@avensia.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/avensia-oss/ts-transform-glitz-displayname"
+  },
+  "homepage": "https://github.com/avensia-oss/ts-transform-glitz-displayname",
+  "private": false,
+  "scripts": {
+    "test": "jest",
+    "build": "tsc --version && tsc --project \"./\""
+  },
+  "files": [
+    "dist/src/**/*"
+  ],
+  "devDependencies": {
+    "@types/jest": "^23.3.10",
+    "@types/node": "^10.12.18",
+    "jest": "^23.6.0",
+    "prettier": "^1.15.3",
+    "ts-jest": "^23.10.5",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.2.2"
+  },
+  "peerDependencies": {
+    "typescript": "*"
+  },
+  "dependencies": {
+    "@types/react": "^16.7.18"
+  }
+}
