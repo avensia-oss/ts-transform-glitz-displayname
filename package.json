@@ -20,7 +20,7 @@
   "scripts": {
     "test": "jest",
     "build": "tsc --version && tsc --project \"./\"",
-    "prepublishOnly": "yarn build",
+    "prepublishOnly": "yarn build"
   },
   "files": [
     "dist/src/**/*"
