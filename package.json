@@ -17,10 +17,10 @@
     "url": "https://github.com/avensia-oss/ts-transform-glitz-displayname"
   },
   "homepage": "https://github.com/avensia-oss/ts-transform-glitz-displayname",
-  "private": false,
   "scripts": {
     "test": "jest",
-    "build": "tsc --version && tsc --project \"./\""
+    "build": "tsc --version && tsc --project \"./\"",
+    "prepublishOnly": "yarn build",
   },
   "files": [
     "dist/src/**/*"
