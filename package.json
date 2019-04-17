@@ -39,5 +39,6 @@
   },
   "dependencies": {
     "@types/react": "^16.7.18"
-  }
+  },
+  "types": "dist/src/index.d.ts"
 }
