@@ -12,6 +12,9 @@ import { styled } from '@glitz/react';
 const CompactHeader = styled.div({
   backgroundColor: 'palevioletred',
 });
+const NarrowHeader = styled(CompactHeader, {
+  backgroundColor: 'mediumslateblue',
+});
 ```
 
 To this:
@@ -23,6 +26,10 @@ const CompactHeader = styled.div({
   backgroundColor: 'palevioletred',
 });
 CompactHeader.displayName = 'CompactHeader';
+const NarrowHeader = styled(CompactHeader, {
+  backgroundColor: 'mediumslateblue',
+});
+NarrowHeader.displayName = 'NarrowHeader';
 ```
 
 ### WIP
