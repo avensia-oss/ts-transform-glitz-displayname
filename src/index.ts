@@ -61,6 +61,7 @@ function visitNode(
   if (ts.isVariableStatement(node)) {
     const decl = node.declarationList.declarations[0];
 
+    // Styled HTML component
     if (
       decl.initializer &&
       ts.isIdentifier(decl.name) &&
@@ -69,6 +70,27 @@ function visitNode(
       decl.initializer.expression.expression &&
       ts.isIdentifier(decl.initializer.expression.expression) &&
       decl.initializer.expression.expression.escapedText === 'styled'
+    ) {
+      const variableDeclarationName = decl.name.escapedText.toString();
+      return [
+        node,
+        ts.createStatement(
+          ts.createAssignment(
+            ts.createPropertyAccess(ts.createIdentifier(variableDeclarationName), 'displayName'),
+            ts.createStringLiteral(variableDeclarationName),
+          ),
+        ),
+      ];
+    }
+
+    // Wrapped glitz component
+    if (
+      decl.initializer &&
+      ts.isIdentifier(decl.name) &&
+      ts.isCallExpression(decl.initializer) &&
+      ts.isIdentifier(decl.initializer.expression) &&
+      decl.initializer.expression.escapedText === 'styled' &&
+      decl.initializer.arguments.length > 0
     ) {
       const variableDeclarationName = decl.name.escapedText.toString();
       return [
