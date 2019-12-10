@@ -1,6 +1,6 @@
 {
   "name": "@avensia-oss/ts-transform-glitz-displayname",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A TypeScript custom transformer that adds a displayName to all Glitz components with a VariableStatement.",
   "main": "index.js",
   "keywords": [
