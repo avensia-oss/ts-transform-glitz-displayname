@@ -5,6 +5,12 @@ module.exports = {
   "transform": {
     "^.+\\.tsx?$": "ts-jest"
   },
+  "globals": {
+    "ts-jest": {
+      "tsconfig": "tsconfig.json",
+      "isolatedModules": true
+    }
+  },
   "testRegex": "test\\.ts$",
   "moduleFileExtensions": [
     "ts",

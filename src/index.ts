@@ -1,4 +1,6 @@
 import * as ts from 'typescript';
+// Use a factory alias compatible across TS versions (<=3.9 and >=4)
+const f: any = (ts as any).factory ?? (ts as any);
 
 export const defaultOptions = {};
 export type Options = typeof defaultOptions;
@@ -26,7 +28,7 @@ function visitSourceFile(
 ): ts.SourceFile {
   const transformedSourceFile = ts.visitEachChild(
     visitNode(sourceFile, sourceFile, program, context, options),
-    childNode => visitNodeAndChildren(childNode, sourceFile, program, context, options),
+    (childNode) => visitNodeAndChildren(childNode, sourceFile, program, context, options),
     context,
   );
   return transformedSourceFile;
@@ -42,7 +44,7 @@ function visitNodeAndChildren(
   const visitedNode = visitNode(node, sourceFile, program, context, options);
   const visitedChildNode = ts.visitEachChild(
     visitedNode,
-    childNode => visitNodeAndChildren(childNode, sourceFile, program, context, options),
+    (childNode) => visitNodeAndChildren(childNode, sourceFile, program, context, options),
     context,
   );
   return visitedChildNode;
@@ -74,10 +76,11 @@ function visitNode(
       const variableDeclarationName = decl.name.escapedText.toString();
       return [
         node,
-        ts.createStatement(
-          ts.createAssignment(
-            ts.createPropertyAccess(ts.createIdentifier(variableDeclarationName), 'displayName'),
-            ts.createStringLiteral(variableDeclarationName),
+        f.createExpressionStatement(
+          f.createBinaryExpression(
+            f.createPropertyAccessExpression(f.createIdentifier(variableDeclarationName), 'displayName'),
+            f.createToken(ts.SyntaxKind.EqualsToken),
+            f.createStringLiteral(variableDeclarationName),
           ),
         ),
       ];
@@ -95,16 +98,15 @@ function visitNode(
       const variableDeclarationName = decl.name.escapedText.toString();
       return [
         node,
-        ts.createStatement(
-          ts.createAssignment(
-            ts.createPropertyAccess(ts.createIdentifier(variableDeclarationName), 'displayName'),
-            ts.createStringLiteral(variableDeclarationName),
+        f.createExpressionStatement(
+          f.createBinaryExpression(
+            f.createPropertyAccessExpression(f.createIdentifier(variableDeclarationName), 'displayName'),
+            f.createToken(ts.SyntaxKind.EqualsToken),
+            f.createStringLiteral(variableDeclarationName),
           ),
         ),
       ];
     }
   }
-  return node;
-
   return node;
 }
